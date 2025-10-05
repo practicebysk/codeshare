@@ -42,7 +42,7 @@ export class EditorComponent {
       if (response && response.code) {
         this.code.set(response.code);
         if (typeof window !== 'undefined') {
-          const newUrl = `${window.location.origin}/${this.uniID}`;
+          const newUrl = `${window.location.origin}/${this.uniID()}`;
           this.shareableLink.set(newUrl);
         }
       }
