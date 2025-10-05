@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
