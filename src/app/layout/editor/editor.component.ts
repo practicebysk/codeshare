@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
@@ -41,8 +41,10 @@ export class EditorComponent {
       this.isLoading.set(false);
       if (response && response.code) {
         this.code.set(response.code);
-        const newUrl = `${window.location.origin}/${this.uniID()}`;
-        this.shareableLink.set(newUrl);
+        if (typeof window !== 'undefined') {
+          const newUrl = `${window.location.origin}/${response.id}`;
+          this.shareableLink.set(newUrl);
+        }
       }
     });
   }
@@ -56,8 +58,10 @@ export class EditorComponent {
     this.api.post<any[]>(`code`, { code: this.code(), uniId: this.uniID() }).subscribe((response: any) => {
       this.isLoading.set(false);
       if (response && response.id) {
-        const newUrl = `${window.location.origin}/${response.id}`;
-        this.shareableLink.set(newUrl);
+        if (typeof window !== 'undefined') {
+          const newUrl = `${window.location.origin}/${response.id}`;
+          this.shareableLink.set(newUrl);
+        }
         this.router.navigate([response.id]);
       }
     });
