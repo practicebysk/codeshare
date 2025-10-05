@@ -1,12 +1,9 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "dist/codeshare/browser/**",
-      "use": "@vercel/static"
+      "source": "/(.*)",
+      "destination": "/"
     }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
